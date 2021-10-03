@@ -12,7 +12,8 @@ Location in GUI:
 
 ```hcl
 module "aci_ca_certificate" {
-  source = "netascode/ca-certificate/aci"
+  source  = "netascode/ca-certificate/aci"
+  version = ">= 0.0.1"
 
   name              = "CA1"
   description       = "My Description"
