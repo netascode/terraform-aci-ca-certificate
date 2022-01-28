@@ -1,4 +1,4 @@
-resource "aci_rest" "pkiTP" {
+resource "aci_rest_managed" "pkiTP" {
   dn         = "uni/userext/pkiext/tp-${var.name}"
   class_name = "pkiTP"
   content = {

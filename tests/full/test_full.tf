@@ -5,8 +5,8 @@ terraform {
     }
 
     aci = {
-      source  = "netascode/aci"
-      version = ">=0.2.0"
+      source  = "CiscoDevNet/aci"
+      version = ">=2.0.0"
     }
   }
 }
@@ -38,7 +38,7 @@ module "main" {
   EOT
 }
 
-data "aci_rest" "pkiTP" {
+data "aci_rest_managed" "pkiTP" {
   dn = "uni/userext/pkiext/tp-${module.main.name}"
 
   depends_on = [module.main]
@@ -49,13 +49,13 @@ resource "test_assertions" "pkiTP" {
 
   equal "name" {
     description = "name"
-    got         = data.aci_rest.pkiTP.content.name
+    got         = data.aci_rest_managed.pkiTP.content.name
     want        = module.main.name
   }
 
   equal "descr" {
     description = "descr"
-    got         = data.aci_rest.pkiTP.content.descr
+    got         = data.aci_rest_managed.pkiTP.content.descr
     want        = "My Description"
   }
 }
